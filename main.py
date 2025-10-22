@@ -1,7 +1,8 @@
-import main.Category as Category
-import main.Products as Product
+from src.Category import Category
+from src.Products import Product
 
 if __name__ == "__main__":
+
     # пример использования
     p1 = Product("P1", "d1", 100.0, 1)
     c = Category("C", "desc", [p1])
