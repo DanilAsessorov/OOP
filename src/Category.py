@@ -29,7 +29,7 @@ class Category:
         if not self.__products:
             return "Список товаров пуст"
         return "\n".join(
-            f"{product.name} ({product.price}) руб. Остаток: {product.quantity} шт."
+            f"{product.name}, {product.price} руб. Остаток: {product.quantity} шт."
             for product in self.__products
         )
 

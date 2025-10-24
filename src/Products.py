@@ -24,12 +24,12 @@ class Product:
     @property
     def price(self):
         """Геттер для получения цены продукта."""
-        return self.price
+        return self.__price
 
     @price.setter
     def price(self, value):
         """Сеттер для установки цены продукта с проверкой на корректность."""
-        if value < 0:
-            print("Цена не может быть отрицательной")
+        if value <= 0:
+            print("Цена не должна быть нулевой или отрицательной")
         else:
             self.__price = value
