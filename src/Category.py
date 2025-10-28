@@ -1,14 +1,11 @@
 class Category:
-    # корректные классовые счётчики
     category_count = 0
-    product_count = 0
+    product_count = 0  # количество всех продуктов во всех категориях
 
     def __init__(self, name, description, products=None):
         self.name = name
         self.description = description
-        # создаём копию списка, чтобы избежать побочных эффектов
         self.__products = list(products) if products is not None else []
-        # обновляем классовые счётчики
         Category.category_count += 1
         Category.product_count += len(self.__products)
 
@@ -24,6 +21,11 @@ class Category:
         return False
 
     @property
+    def item_count(self):
+        """Количество продуктов в данной категории."""
+        return len(self.__products)
+
+    @property
     def products(self):
         """Геттер для получения строкового представления товаров категории."""
         if not self.__products:
@@ -33,6 +35,6 @@ class Category:
             for product in self.__products
         )
 
-
-def add_product(product):
-    product.add_product(product)
+    def __str__(self):
+        total_quantity = sum(product.quantity for product in self.__products)
+        return f"{self.name}, количество продуктов: {total_quantity} шт."

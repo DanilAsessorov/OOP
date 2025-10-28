@@ -33,3 +33,17 @@ class Product:
             print("Цена не должна быть нулевой или отрицательной")
         else:
             self.__price = value
+
+    def __str__(self):
+        """Возвращает строковое представление продукта в требуемом формате."""
+        return f"{self.name}, {self.price} руб. Остаток: {self.quantity} шт."
+
+    def __add__(self, other):
+        """
+        Операция сложения продуктов.
+        Возвращает общую стоимость всех товаров на складе.
+        """
+        if not isinstance(other, Product):
+            raise TypeError("Нельзя складывать объекты разных типов")
+
+        return self.price * self.quantity + other.price * other.quantity

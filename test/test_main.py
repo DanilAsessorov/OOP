@@ -14,14 +14,13 @@ def test_product_init():
 
 
 def test_category_init_and_counts():
-    # инициализация Category с продуктом обновляет счётчики
     Category.category_count = 0
     Category.product_count = 0
 
     p = Product("P", "d", 5.0, 1)
     c = Category("C", "desc", [p])
     assert c.name == "C"
-    assert len(c.products) == 1
+    assert c.item_count == 1
     assert Category.category_count == 1
     assert Category.product_count == 1
 
@@ -87,3 +86,35 @@ def test_category_product_property():
         "Пылесос, 15000.0 руб. Остаток: 5 шт.\n" "Утюг, 3000.0 руб. Остаток: 8 шт."
     )
     assert category.products == expected_output
+
+
+def test_product_str():
+    p = Product("Samsung Galaxy S23", "256GB, Серый цвет", 180000.0, 5)
+    assert str(p) == "Samsung Galaxy S23, 180000.0 руб. Остаток: 5 шт."
+
+
+def test_category_str():
+    p1 = Product("Samsung Galaxy S23", "256GB, Серый цвет", 180000.0, 5)
+    p2 = Product("Iphone 15", "512GB, Gray space", 210000.0, 8)
+    c = Category("Смартфоны", "Описание", [p1, p2])
+    assert str(c) == "Смартфоны, количество продуктов: 13 шт."  # 5 + 8
+
+
+def test_product_addition():
+    p1 = Product("Samsung Galaxy S23", "256GB, Серый цвет", 180000.0, 5)
+    p2 = Product("Iphone 15", "512GB, Gray space", 210000.0, 8)
+
+    result = p1 + p2
+    assert result == 180000.0 * 5 + 210000.0 * 8  # 900000 + 1680000 = 2580000
+
+
+def test_category_products_property():
+    p1 = Product("Samsung Galaxy S23", "256GB, Серый цвет", 180000.0, 5)
+    p2 = Product("Iphone 15", "512GB, Gray space", 210000.0, 8)
+    c = Category("Смартфоны", "Описание", [p1, p2])
+
+    expected = (
+        "Samsung Galaxy S23, 180000.0 руб. Остаток: 5 шт.\n"
+        "Iphone 15, 210000.0 руб. Остаток: 8 шт."
+    )
+    assert c.products == expected
