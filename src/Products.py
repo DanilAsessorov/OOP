@@ -1,16 +1,17 @@
 class Product:
-    """класс данных о продукте"""
+    """Класс данных о продукте"""
 
     def __init__(self, name, description, price, quantity):
         self.name = name
         self.description = description
-        self.price = price
+        self.__price = price
         self.quantity = quantity
 
     @classmethod
     def new_product(cls, product_data):
         """
-        Создаём новый обьект класса Product из словаря с данными о товаре.
+        Создаёт новый объект класса Product из словаря с данными о товаре.
+
         :param product_data: Словарь с ключами 'name', 'description', 'price', 'quantity'
         :return: Объект класса Product
         """
@@ -42,8 +43,12 @@ class Product:
         """
         Операция сложения продуктов.
         Возвращает общую стоимость всех товаров на складе.
+        Разрешено только для объектов одного типа.
         """
         if not isinstance(other, Product):
             raise TypeError("Нельзя складывать объекты разных типов")
+
+        if type(self) is not type(other):
+            raise TypeError("Можно складывать только товары одного и того же класса")
 
         return self.price * self.quantity + other.price * other.quantity
