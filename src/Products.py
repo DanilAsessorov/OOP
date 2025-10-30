@@ -1,6 +1,7 @@
 from src.BaseProduct import BaseProduct
 from src.MixinLog import MixinLog
 
+
 class Product(MixinLog, BaseProduct):
     """Класс данных о продукте"""
 

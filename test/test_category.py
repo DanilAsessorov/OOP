@@ -1,4 +1,5 @@
 import pytest
+
 from src.Category import Category
 from src.LawnGrass import LawnGrass
 from src.Products import Product
@@ -23,16 +24,21 @@ def test_add_valid_products():
 
 def test_add_invalid_product_type():
     category = Category("Категория", "Описание", [])
-    basic_product = Product.new_product({
-        "name": "Базовый продукт",
-        "description": "Описание",
-        "price": 100.0,
-        "quantity": 5
-    })
+    basic_product = Product.new_product(
+        {
+            "name": "Базовый продукт",
+            "description": "Описание",
+            "price": 100.0,
+            "quantity": 5,
+        }
+    )
 
     with pytest.raises(TypeError) as exc_info:
         category.add_product(basic_product)
-    assert str(exc_info.value) == "Можно добавлять только конкретные типы продуктов (Smartphone, LawnGrass и т.д.)"
+    assert (
+        str(exc_info.value)
+        == "Можно добавлять только конкретные типы продуктов (Smartphone, LawnGrass и т.д.)"
+    )
 
 
 def test_add_non_product_object():

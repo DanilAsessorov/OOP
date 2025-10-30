@@ -1,7 +1,10 @@
 from src.Products import Product
 
+
 class LawnGrass(Product):
-    def __init__(self, name, description, price, quantity, country, germination_period, color):
+    def __init__(
+        self, name, description, price, quantity, country, germination_period, color
+    ):
         # Сначала создаём все атрибуты
         self.country = country
         self.germination_period = germination_period
@@ -11,5 +14,7 @@ class LawnGrass(Product):
 
     def __repr__(self):
         """Полное строковое представление объекта LawnGrass"""
-        return (f"LawnGrass({self.name!r}, {self.description!r}, {self.price!r}, {self.quantity!r}, "
-                f"{self.country!r}, {self.germination_period!r}, {self.color!r})")
+        return (
+            f"LawnGrass({self.name!r}, {self.description!r}, {self.price!r}, {self.quantity!r}, "
+            f"{self.country!r}, {self.germination_period!r}, {self.color!r})"
+        )

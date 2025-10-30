@@ -1,4 +1,5 @@
-import pytest # noqa: F401
+import pytest  # noqa: F401
+
 from src.Products import Product
 from src.Smartphone import Smartphone
 
@@ -17,11 +18,18 @@ def test_mixin_log_for_smartphone(capfd):
     """
     Проверяет, что при создании объекта Smartphone также выводится сообщение.
     """
-    _ = Smartphone("Samsung Galaxy S23", "Флагманский смартфон", 180000.0, 3, 98.5, "S23", 512, "Чёрный")
-    captured = capfd.readouterr()
-    expected_output = (
-        "Smartphone('Samsung Galaxy S23', 'Флагманский смартфон', 180000.0, 3, 98.5, 'S23', 512, 'Чёрный')\n"
+    _ = Smartphone(
+        "Samsung Galaxy S23",
+        "Флагманский смартфон",
+        180000.0,
+        3,
+        98.5,
+        "S23",
+        512,
+        "Чёрный",
     )
+    captured = capfd.readouterr()
+    expected_output = "Smartphone('Samsung Galaxy S23', 'Флагманский смартфон', 180000.0, 3, 98.5, 'S23', 512, 'Чёрный')\n"
     assert captured.out == expected_output
 
 
