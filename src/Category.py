@@ -18,10 +18,14 @@ class Category:
         Разрешено только для экземпляров класса Product или его подклассов.
         """
         if not isinstance(product, Product):
-            raise TypeError("Можно добавлять только объекты класса Product или его наследников")
+            raise TypeError(
+                "Можно добавлять только объекты класса Product или его наследников"
+            )
 
         if product.__class__ == Product:
-            raise TypeError("Можно добавлять только конкретные типы продуктов (Smartphone, LawnGrass и т.д.)")
+            raise TypeError(
+                "Можно добавлять только конкретные типы продуктов (Smartphone, LawnGrass и т.д.)"
+            )
 
         self.__products.append(product)
         Category.product_count += 1

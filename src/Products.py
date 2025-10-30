@@ -1,4 +1,8 @@
-class Product:
+from src.BaseProduct import BaseProduct
+from src.MixinLog import MixinLog
+
+
+class Product(MixinLog, BaseProduct):
     """Класс данных о продукте"""
 
     def __init__(self, name, description, price, quantity):
@@ -6,6 +10,7 @@ class Product:
         self.description = description
         self.__price = price
         self.quantity = quantity
+        super().__init__()  # Вызовет MixinLog.__init__, который напечатает repr
 
     @classmethod
     def new_product(cls, product_data):
@@ -36,19 +41,13 @@ class Product:
             self.__price = value
 
     def __str__(self):
-        """Возвращает строковое представление продукта в требуемом формате."""
+        """Возвращает строковое представление продукта."""
         return f"{self.name}, {self.price} руб. Остаток: {self.quantity} шт."
 
     def __add__(self, other):
-        """
-        Операция сложения продуктов.
-        Возвращает общую стоимость всех товаров на складе.
-        Разрешено только для объектов одного типа.
-        """
+        """Операция сложения продуктов."""
         if not isinstance(other, Product):
             raise TypeError("Нельзя складывать объекты разных типов")
-
         if type(self) is not type(other):
             raise TypeError("Можно складывать только товары одного и того же класса")
-
         return self.price * self.quantity + other.price * other.quantity

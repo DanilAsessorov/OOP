@@ -19,12 +19,9 @@ def test_category_init_and_counts():
     Category.category_count = 0
     Category.product_count = 0
 
-    p = Product.new_product({
-        "name": "P",
-        "description": "d",
-        "price": 5.0,
-        "quantity": 1
-    })
+    p = Product.new_product(
+        {"name": "P", "description": "d", "price": 5.0, "quantity": 1}
+    )
     c = Category("C", "desc", [p])
     assert c.name == "C"
     assert c.item_count == 1
@@ -37,12 +34,9 @@ def test_add_and_remove_product_updates_count():
     Category.category_count = 0
     Category.product_count = 0
 
-    p = Product.new_product({
-        "name": "P",
-        "description": "d",
-        "price": 2.0,
-        "quantity": 1
-    })
+    p = Product.new_product(
+        {"name": "P", "description": "d", "price": 2.0, "quantity": 1}
+    )
     c = Category("C", "", [])
 
     try:
@@ -93,18 +87,22 @@ def test_product_new_product():
 
 def test_category_product_property():
     # проверка геттера products в виде строкового представления
-    p1 = Product.new_product({
-        "name": "Пылесос",
-        "description": "Мощный пылесос",
-        "price": 15000.0,
-        "quantity": 5
-    })
-    p2 = Product.new_product({
-        "name": "Утюг",
-        "description": "Гладильное устройство",
-        "price": 3000.0,
-        "quantity": 8
-    })
+    p1 = Product.new_product(
+        {
+            "name": "Пылесос",
+            "description": "Мощный пылесос",
+            "price": 15000.0,
+            "quantity": 5,
+        }
+    )
+    p2 = Product.new_product(
+        {
+            "name": "Утюг",
+            "description": "Гладильное устройство",
+            "price": 3000.0,
+            "quantity": 8,
+        }
+    )
     category = Category("Электроника", "Категория бытовой техники", [p1, p2])
 
     expected_output = (
@@ -114,63 +112,77 @@ def test_category_product_property():
 
 
 def test_product_str():
-    p = Product.new_product({
-        "name": "Samsung Galaxy S23",
-        "description": "256GB, Серый цвет",
-        "price": 180000.0,
-        "quantity": 5
-    })
+    p = Product.new_product(
+        {
+            "name": "Samsung Galaxy S23",
+            "description": "256GB, Серый цвет",
+            "price": 180000.0,
+            "quantity": 5,
+        }
+    )
     assert str(p) == "Samsung Galaxy S23, 180000.0 руб. Остаток: 5 шт."
 
 
 def test_category_str():
-    p1 = Product.new_product({
-        "name": "Samsung Galaxy S23",
-        "description": "256GB, Серый цвет",
-        "price": 180000.0,
-        "quantity": 5
-    })
-    p2 = Product.new_product({
-        "name": "Iphone 15",
-        "description": "512GB, Gray space",
-        "price": 210000.0,
-        "quantity": 8
-    })
+    p1 = Product.new_product(
+        {
+            "name": "Samsung Galaxy S23",
+            "description": "256GB, Серый цвет",
+            "price": 180000.0,
+            "quantity": 5,
+        }
+    )
+    p2 = Product.new_product(
+        {
+            "name": "Iphone 15",
+            "description": "512GB, Gray space",
+            "price": 210000.0,
+            "quantity": 8,
+        }
+    )
     c = Category("Смартфоны", "Описание", [p1, p2])
     assert str(c) == "Смартфоны, количество продуктов: 13 шт."  # 5 + 8
 
 
 def test_product_addition():
-    p1 = Product.new_product({
-        "name": "Samsung Galaxy S23",
-        "description": "256GB, Серый цвет",
-        "price": 180000.0,
-        "quantity": 5
-    })
-    p2 = Product.new_product({
-        "name": "Iphone 15",
-        "description": "512GB, Gray space",
-        "price": 210000.0,
-        "quantity": 8
-    })
+    p1 = Product.new_product(
+        {
+            "name": "Samsung Galaxy S23",
+            "description": "256GB, Серый цвет",
+            "price": 180000.0,
+            "quantity": 5,
+        }
+    )
+    p2 = Product.new_product(
+        {
+            "name": "Iphone 15",
+            "description": "512GB, Gray space",
+            "price": 210000.0,
+            "quantity": 8,
+        }
+    )
 
     result = p1 + p2
     assert result == 180000.0 * 5 + 210000.0 * 8  # 900000 + 1680000 = 2580000
 
 
 def test_category_products_property():
-    p1 = Product.new_product({
-        "name": "Samsung Galaxy S23",
-        "description": "256GB, Серый цвет",
-        "price": 180000.0,
-        "quantity": 5
-    })
-    p2 = Product.new_product({
-        "name": "Iphone 15",
-        "description": "512GB, Gray space",
-        "price": 210000.0,
-        "quantity": 8
-    })
+    p1 = Product.new_product(
+        {
+            "name": "Samsung Galaxy S23",
+            "description": "256GB, Серый цвет",
+            "price": 180000.0,
+            "quantity": 5,
+        }
+    )
+    p2 = Product.new_product(
+        {
+            "name": "Iphone 15",
+            "description": "512GB, Gray space",
+            "price": 210000.0,
+            "quantity": 8,
+        }
+    )
     c = Category("Смартфоны", "Описание", [p1, p2])
 
     expected = (

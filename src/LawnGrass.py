@@ -5,11 +5,16 @@ class LawnGrass(Product):
     def __init__(
         self, name, description, price, quantity, country, germination_period, color
     ):
-        super().__init__(name, description, price, quantity)
+        # Сначала создаём все атрибуты
         self.country = country
         self.germination_period = germination_period
         self.color = color
+        # Потом вызываем родительскую инициализацию
+        super().__init__(name, description, price, quantity)
 
-    def __str__(self):
-        """Переопределение метода __str__"""
-        return super().__str__()
+    def __repr__(self):
+        """Полное строковое представление объекта LawnGrass"""
+        return (
+            f"LawnGrass({self.name!r}, {self.description!r}, {self.price!r}, {self.quantity!r}, "
+            f"{self.country!r}, {self.germination_period!r}, {self.color!r})"
+        )
