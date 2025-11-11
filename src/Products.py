@@ -3,14 +3,14 @@ from src.MixinLog import MixinLog
 
 
 class Product(MixinLog, BaseProduct):
-    """Класс данных о продукте"""
-
     def __init__(self, name, description, price, quantity):
+        if quantity <= 0:
+            raise ValueError("Товар с нулевым количеством не может быть добавлен")
         self.name = name
         self.description = description
         self.__price = price
         self.quantity = quantity
-        super().__init__()  # Вызовет MixinLog.__init__, который напечатает repr
+        super().__init__()
 
     @classmethod
     def new_product(cls, product_data):

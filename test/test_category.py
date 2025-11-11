@@ -85,3 +85,46 @@ def test_products_property():
     )
     category.add_product(product)
     assert "Iphone 15" in category.products
+
+
+def test_get_average_price_empty_category():
+    """Средняя цена в пустой категории должна быть 0 через try/except"""
+    category = Category("Электроника", "Умные устройства")
+    assert category.middle_price() == 0
+
+
+def test_get_average_price_one_product():
+    """Один товар — средняя цена равна его цене"""
+    category = Category("Электроника", "Умные устройства")
+    phone = Smartphone(
+        "iPhone",
+        "Смартфон",
+        70000,
+        5,
+        efficiency="Высокая",
+        model="13",
+        memory="128",
+        color="Чёрный",
+    )
+    category.add_product(phone)
+    assert category.middle_price() == 70000
+
+
+def test_get_average_price_multiple_products():
+    grass1 = LawnGrass("Газон", "Зелёный", 1000, 10, "Россия", "14 дней", "Зелёный")
+    grass2 = LawnGrass("Мох", "Теневой", 1500, 5, "Финляндия", "21 день", "Тёмный")
+    category = Category("Сад", "Травы")
+    category.add_product(grass1)  # ← добавляем оба
+    category.add_product(grass2)
+    assert category.middle_price() == (1000 + 1500) / 2
+
+
+def test_get_average_price_with_subclasses():
+    """Проверка, что средняя цена работает и для подклассов (Smartphone, LawnGrass)"""
+    category = Category("Техника", "Гаджеты")
+    phone = Smartphone("Galaxy", "Android", 60000, 3, "Высокая", "S23", "256", "Серый")
+    tablet = Smartphone("iPad", "Apple", 40000, 2, "Средняя", "Air", "64", "Белый")
+    category.add_product(phone)
+    category.add_product(tablet)
+    avg = category.middle_price()
+    assert avg == (60000 + 40000) / 2  # = 50000.0
