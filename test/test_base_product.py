@@ -1,5 +1,7 @@
-import pytest
 from unittest.mock import Mock
+
+import pytest
+
 from src.BaseProduct import BaseProduct
 
 
@@ -28,16 +30,16 @@ def test_base_product_method_bodies_are_reachable_for_coverage():
 
     # Имитируем тело каждого метода — просто чтобы coverage "увидел", что мы "работаем" с ними
     def fake_init(desc, name, price, qty):
-        mock_init(desc, name, price, qty)  # ← триггерим мок, не вызывая BaseProduct
-        pass  # ← соответствует строке с pass в __init__
+        mock_init(desc, name, price, qty)
+        pass
 
     def fake_str():
         mock_str()
-        pass  # ← как в теле __str__
+        pass
 
     def fake_add(other):
         mock_add(other)
-        pass  # ← как в теле __add__
+        pass
 
     # Вызываем фейковые функции
     fake_init("описание", "название", 1000, 10)
